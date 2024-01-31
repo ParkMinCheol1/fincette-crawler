@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="MGF_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="version.num" value="1.00"/>
+    <property name="package" value="com.welgram.crawler.direct.fire.mgf"/>
+    <property name="products"
+              value="MGF_MDC_D002,MGF_CCR_D001,MGF_CHL_D001,MGF_DMT_D001,MGF_OST_D001,MGF_DSS_D001,MGF_DSS_D002,MGF_DRV_D002,MGF_MDC_F004,MGF_DTL_F002,MGF_CCR_D005,MGF_DSS_D008,MGF_DSS_D007,MGF_MDC_D004,MGF_DMT_F001,MGF_DSS_D009,MGF_AMD_F001,MGF_CCR_F001,MGF_CCR_F002,MGF_DSS_F009,MGF_DSS_D010,MGF_DSS_D011,MGF_DSS_D012,MGF_CHL_F001,MGF_CHL_F002,MGF_CHL_F003,MGF_BAB_F001,MGF_DSS_F006,MGF_DSS_F021,MGF_DSS_F023,MGF_DSS_F022,MGF_DSS_F013,MGF_DSS_F007,MGF_DSS_F014,MGF_DSS_F015,MGF_DSS_F016,MGF_DSS_F017,MGF_DSS_F028,MGF_DSS_F027,MGF_DSS_F029,MGF_DSS_F032,MGF_DSS_F033,MGF_DSS_F037,MGF_DSS_F030,MGF_DSS_F034,MGF_DSS_F031,MGF_DSS_F038,MGF_DSS_F036,MGF_DSS_F035"/>
+
+    <import file="common_target.xml" as="common_target"/>
+    <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="LIN_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+    <property name="version.num" value="1.00"/>
+    <property name="package" value="com.welgram.crawler.direct.life.lin"/>
+<!--    <property name="products"-->
+<!--        value="LIN_CCR_D001,LIN_CCR_D002,LIN_CHL_D001,LIN_DTL_D001,LIN_DTL_D002,LIN_CCR_F001,LIN_DSS_D001,LIN_DSS_D002,LIN_DSS_D003,LIN_TRM_F002,LIN_WLF_F001,LIN_WLF_F013,LIN_WLF_F005,LIN_WLF_F014,LIN_WLF_F015,LIN_WLF_F011,LIN_DTL_F002,LIN_DTL_F003,LIN_DTL_F006,LIN_DTL_F007,LIN_DTL_F008,LIN_DTL_F010,LIN_DTL_F011,LIN_DMN_F001,LIN_DMN_F002,LIN_DMN_F010,LIN_CCR_F006,LIN_CCR_F012,LIN_CCR_F021,LIN_CCR_D003,LIN_DMN_F014,LIN_CCR_F015,LIN_CCR_F016,LIN_WLF_F016,LIN_WLF_F018,LIN_CCR_F013,LIN_DSS_F002,LIN_DSS_F004,LIN_DSS_F005,LIN_DSS_F006,LIN_CCR_F024,LIN_CCR_F025,LIN_CCR_F009"/>-->
+
+    <property name="products"
+            value="LIN_CCR_D001"/>
+
+    <import file="common_target.xml" as="common_target"/>
+    <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

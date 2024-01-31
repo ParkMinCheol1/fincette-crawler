@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+
+<properties>
+
+  <comment>fincette-crawler properties.</comment>
+  <entry key="service">nuzal</entry>
+
+  <!-- Deprecated -->
+  <entry key="chrome.driver.path">/driver/chromedriver/103.0.5060.53/windows/chromedriver.exe</entry>
+
+  <!--  //crawler 경로설정-->
+  <entry key="windows.crawler.dir">c:/crawler</entry>
+  <entry key="windows.chrome.driver.path">/driver/chromedriver/116.0.5845.96/windows/chromedriver.exe</entry>
+
+  <entry key="mac_arm64.crawler.dir">/Users/crawler</entry>
+  <entry key="mac_arm64.chrome.driver.path">/driver/chromedriver/116.0.5845.96/mac_arm64/chromedriver</entry>
+
+  <entry key="mac.crawler.dir">/Users/crawler</entry>
+  <entry key="mac.chrome.driver.path">/driver/chromedriver/116.0.5845.96/mac_arm64/chromedriver</entry>
+
+  <entry key="linux.crawler.dir">/home/hyunlae/git/nuzal-crawler</entry>
+  <entry key="linux.chrome.driver.path">/driver/chromedriver/106.0.5249.61/linux/chromedriver</entry>
+
+  <entry key="msedge.driver.path">/driver/msedgedriver.exe</entry>
+  <entry key="ie.driver.path">/driver/IEDriverServer.exe</entry>
+
+  <entry key="api.url">https://api.nuzal.kr</entry>
+  <entry key="api.staging">https://staging-api.nuzal.co.kr</entry>
+  <entry key="api.dev">https://dev-nuzal-api.nuzal.co.kr</entry>
+  <entry key="api.local">http://127.0.0.1:8081</entry>
+
+  <entry key="api.clientId">3Stnje4j7+vAErWdHaSahw==</entry>
+  <entry key="api.secretKey">3c26b34b832a0fde3e9c7887295fa4d69f46ea7296c4e2c7bebe21ef88cdcef4</entry>
+
+</properties>

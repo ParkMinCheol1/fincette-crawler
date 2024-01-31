@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="ACFXXXXX.jar">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler"/>
+  <property name="products" value="MonitoringEx"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

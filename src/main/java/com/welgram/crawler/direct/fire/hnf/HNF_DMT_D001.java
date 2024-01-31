@@ -1,0 +1,219 @@
+package com.welgram.crawler.direct.fire.hnf;
+
+import com.welgram.common.DateUtil;
+import com.welgram.common.MoneyUtil;
+import com.welgram.common.WaitUtil;
+import com.welgram.common.enums.ExceptionEnum;
+import com.welgram.common.except.crawler.CommonCrawlerException;
+import com.welgram.common.except.crawler.crawl.PremiumCrawlerException;
+import com.welgram.common.except.crawler.setPlanInfo.SetInsTermException;
+import com.welgram.common.except.crawler.setUserInfo.SetBirthdayException;
+import com.welgram.common.except.crawler.setUserInfo.SetGenderException;
+import com.welgram.crawler.general.CrawlingProduct;
+import com.welgram.crawler.general.CrawlingTreaty;
+import com.welgram.crawler.general.CrawlingTreaty.ProductGubun;
+import java.util.Date;
+import java.util.List;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
+
+
+public class HNF_DMT_D001 extends CrawlingHNFMobile {
+
+	public static void main(String[] args) {
+		executeCommand(new HNF_DMT_D001(), args);
+	}
+
+
+
+	@Override
+	protected boolean scrap(CrawlingProduct info) throws Exception {
+
+		WebElement $element = null;
+
+		logger.info("가입하기 버튼 클릭");
+		$element = driver.findElement(By.xpath("//span[normalize-space()='가입하기']/parent::button"));
+		click($element);
+
+		logger.info("여행시작일 설정");
+		String departureDate = DateUtil.dateAfter7Days(new Date());
+		setTravelDepartureDate(departureDate);
+
+		logger.info("여행도착일 설정");
+		String arrivalDate = DateUtil.dateAfter13Days(new Date());
+		setTravelArrivalDate(arrivalDate);
+
+		logger.info("다음 버튼 클릭");
+		$element = driver.findElement(By.id("btnStep01Next"));
+		click($element);
+
+		logger.info("생년월일 입력");
+		setBirthday(info.getFullBirth());
+
+		logger.info("성별 입력");
+		setGender(info.getGender());
+
+		logger.info("다음 버튼 클릭");
+		$element = driver.findElement(By.id("btnStep01Next"));
+		click($element);
+
+		logger.info("실손의료보험 중복가입 유의사항 체크");
+		$element = driver.findElement(By.xpath("//label[@for='chkDuplicateConfirm']"));
+		click($element);
+
+		logger.info("확인 버튼 클릭");
+		$element = driver.findElement(By.id("btnDuplicateConfirm"));
+		click($element);
+
+		logger.info("플랜 선택");
+		setPlan(info.planSubName);
+
+		logger.info("특약 설정");
+		setTreatiesToggleType(info.getTreatyList());
+
+		logger.info("보험료 크롤링");
+		crawlPremium(info);
+
+		logger.info("스크린샷 찍기");
+		takeScreenShot(info);
+
+		return true;
+
+	}
+
+
+
+	@Override
+	public void crawlPremium(Object... obj) throws PremiumCrawlerException {
+
+		String title = "보험료 크롤링";
+
+		CrawlingProduct info = (CrawlingProduct) obj[0];
+		CrawlingTreaty mainTreaty = info.getTreatyList().stream().filter(t -> t.productGubun.equals(ProductGubun.주계약)).findFirst().get();
+		ExceptionEnum exceptionEnum = ExceptionEnum.ERROR_BY_SCRAPING_MONTHLY_PREMIUM;
+
+		try {
+
+			// 보험료 크롤링 전에는 대기시간을 넉넉히 준다
+			WaitUtil.waitFor(5);
+
+			WebElement $premiumDiv = driver.findElement(By.xpath("//div[@class[contains(., 'total-price')]]"));
+			String premium = $premiumDiv.getText();
+			premium = String.valueOf(MoneyUtil.toDigitMoney(premium));
+
+			mainTreaty.monthlyPremium = premium;
+
+			if("".equals(mainTreaty.monthlyPremium) || "0".equals(mainTreaty.monthlyPremium)) {
+				logger.info("주계약 보험료는 0원일 수 없습니다. 주계약 보험료를 세팅해주세요.");
+				throw new PremiumCrawlerException(exceptionEnum.getMsg());
+			} else {
+				logger.info("주계약 보험료 : {}원", mainTreaty.monthlyPremium);
+			}
+
+		} catch (Exception e) {
+			throw new PremiumCrawlerException(e.getCause(), exceptionEnum.getMsg());
+		}
+
+	}
+
+
+
+	@Override
+	public void setBirthday(Object... obj) throws SetBirthdayException {
+
+		String title = "생년월일";
+		String expectedBirth = (String) obj[0];
+		String actualBirth = "";
+
+		try {
+			WebElement $birthInput = driver.findElement(By.id("insrd_sBirth"));
+
+			// 생년월일 설정
+			actualBirth = helper.sendKeys4_check($birthInput, expectedBirth);
+
+			// 비교
+			super.printLogAndCompare(title, expectedBirth, actualBirth);
+
+		} catch (Exception e) {
+			ExceptionEnum exceptionEnum = ExceptionEnum.ERR_BY_BIRTH;
+			throw new SetBirthdayException(e.getCause(), exceptionEnum.getMsg());
+		}
+
+	}
+
+
+
+	@Override
+	public void setGender(Object... obj) throws SetGenderException {
+
+		String title = "성별";
+
+		int gender = (int) obj[0];
+		String expectedGender = (gender == MALE) ? "남" : "여";
+		String actualGender = "";
+
+		try {
+			WebElement $genderUl = driver.findElement(By.xpath("//ul[@data-js-pub='main-gender-button']"));
+			WebElement $genderButton = $genderUl.findElement(By.xpath(".//button[normalize-space()='" + expectedGender + "']"));
+
+			// 성별 설정
+			click($genderButton);
+
+			// 실제 클릭된 성별 값 읽어오기
+			$genderButton = $genderUl.findElement(By.xpath(".//button[@class[contains(., 'selected')]]"));
+			actualGender = $genderButton.getText().trim();
+
+			// 성별 비교
+			super.printLogAndCompare(title, expectedGender, actualGender);
+
+		} catch (Exception e) {
+			ExceptionEnum exceptionEnum = ExceptionEnum.ERR_BY_GENDER;
+			throw new SetGenderException(e.getCause(), exceptionEnum.getMsg());
+		}
+
+	}
+
+
+
+	public void setPlan(String expectedPlan) throws CommonCrawlerException {
+
+		String title = "플랜명";
+		String actualPlan = "";
+
+		try {
+			WebElement $planDiv = driver.findElement(By.xpath("//div[@class='select-tab']"));
+			WebElement $planUl = $planDiv.findElement(By.tagName("ul"));
+			List<WebElement> $planButtonList = $planUl.findElements(By.tagName("button"));
+
+			boolean isFixedPlan = $planButtonList.size() == 0;
+
+			if (isFixedPlan) {
+				logger.info("플랜이 고정입니다.");
+
+				// 고정된 플랜명 읽어오기
+				WebElement $plan = driver.findElement(By.xpath("//li[@class='sortation-content on']/p"));
+				actualPlan = $plan.getText().trim();
+
+			} else {
+				logger.info("플랜을 선택할 수 있습니다.");
+
+				WebElement $planButton = $planDiv.findElement(By.xpath(".//button[normalize-space()='" + expectedPlan + "']"));
+				click($planButton);
+
+				// 실제 클릭된 플랜 읽어오기
+				$planButton = $planDiv.findElement(By.xpath(".//button[@class[contains(., 'selected')]]"));
+				actualPlan = $planButton.getText().trim();
+			}
+
+			// 비교
+			super.printLogAndCompare(title, expectedPlan, actualPlan);
+
+		} catch (Exception e) {
+			ExceptionEnum exceptionEnum = ExceptionEnum.ERROR_BY_PLAN_NAME;
+			throw new SetInsTermException(e.getCause(), exceptionEnum.getMsg());
+		}
+
+	}
+
+}

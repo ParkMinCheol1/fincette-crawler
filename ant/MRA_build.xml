@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="MRA_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+
+    <!--define folder properties-->
+    <property file="common/build.properties"/>
+    <property name="package" value="com.welgram.crawler.direct.life.mra"/>
+<!--    <property name="products" value="MRA_CCR_D007,MRA_CCR_D009,MRA_CCR_F001,MRA_DMN_F001,MRA_DMN_F002,MRA_DMN_F003,MRA_DSS_D005,MRA_DSS_D007,MRA_DSS_F001,MRA_DSS_F005,MRA_DSS_F006,MRA_DSS_F007,MRA_DSS_F008,MRA_DTL_D002,MRA_DTL_F001,MRA_TRM_D002,MRA_TRM_F001,MRA_TRM_F004,MRA_TRM_F005,MRA_TRM_F008,MRA_TRM_F010,MRA_TRM_F011,MRA_TRM_F012,MRA_TRM_F013,MRA_WLF_F011,MRA_WLF_F012,MRA_WLF_F013,MRA_DSS_F009,MRA_DSS_F010,MRA_DSS_F011,MRA_DSS_F012,MRA_DSS_F013,MRA_DSS_F014,MRA_DSS_F015,MRA_DSS_F016,MRA_DSS_F017,MRA_DSS_F018,MRA_DSS_F019"/>-->
+    <property name="products" value="MRA_DSS_F020,MRA_DSS_F021,MRA_DSS_F022,MRA_DSS_F023"/>
+
+    <import file="common_target.xml" as="common_target"/>
+    <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

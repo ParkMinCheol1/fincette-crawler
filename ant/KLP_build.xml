@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="KLP_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.life.klp"/>
+  <property name="products"
+    value="KLP_MSV_D001,KLP_DTL_D001,KLP_TRM_D001,KLP_CCR_D002,KLP_DSS_D003,KLP_DSS_D004,KLP_DSS_D005,KLP_SAV_D001,KLP_SAV_D002,KLP_ANT_D001,KLP_ASV_D001,KLP_ACD_D001,KLP_CCR_D004,KLP_DSS_D001,KLP_DSS_D002,KLP_CHL_D001,KLP_BAB_D001,KLP_DSS_D010,KLP_DSS_D011,KLP_BAB_D002,KLP_CHL_D002,KLP_WLF_D001,KLP_WLF_D002,KLP_DSS_D012,KLP_DSS_D013,KLP_DSS_D015,KLP_DSS_D014,KLP_WLF_D003"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

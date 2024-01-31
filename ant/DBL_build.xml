@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="DBL_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.life.dbl"/>
+  <property name="products" value="DBL_DSS_D003"/>
+<!--  <property name="products" value="DBL_WLF_F046,DBL_WLF_F047,DBL_TRM_F021,DBL_TRM_F022,DBL_BAB_F003,DBL_BAB_F004,DBL_WLF_F026,DBL_DSS_F001,DBL_DSS_F020,DBL_DSS_F021,DBL_WLF_F024,DBL_CCR_D001,DBL_CCR_D002,DBL_SAV_D001,DBL_DSS_D002,DBL_DSS_D003,DBL_DSS_D001,DBL_TRM_D001,DBL_TRM_F020,DBL_BAB_F003,DBL_BAB_F004,DBL_CCR_F014,DBL_CCR_F015,DBL_CCR_F016,DBL_CCR_F017,DBL_CHL_F003,DBL_CHL_F004,DBL_DMN_F004,DBL_DMN_F007,DBL_DMN_F008,DBL_DMN_F009,DBL_DSS_F017,DBL_DSS_F018,DBL_DSS_F019,DBL_DSS_F022,DBL_DSS_F023,DBL_DSS_F024,DBL_DSS_F025,DBL_DSS_F026,DBL_MDC_F001"/>-->
+
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

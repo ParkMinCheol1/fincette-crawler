@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="HDF_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+
+	<!--define folder properties-->
+	<property name="version.num" value="1.00"/>
+	<property name="package" value="com.welgram.crawler.direct.fire.hdf"/>
+	<property name="products" value="HDF_ACD_F002,HDF_ACD_F005,HDF_ACD_F012,HDF_CCR_F012,HDF_CCR_F013,HDF_CCR_F014,HDF_CCR_F015,HDF_DRV_F007,HDF_DSS_F003,HDF_DSS_F005,HDF_DSS_F006,HDF_DSS_F009,HDF_DSS_F011,HDF_DSS_F019,HDF_DSS_F022,HDF_DSS_F023,HDF_DSS_F029,HDF_DSS_F030,HDF_DSS_F031,HDF_DSS_F032,HDF_DSS_F033,HDF_DSS_F034,HDF_DSS_F035,HDF_DSS_F036,HDF_DSS_F037,HDF_DSS_F042,HDF_DSS_F043,HDF_DSS_F045,HDF_DSS_F046,HDF_DSS_F056,HDF_DSS_F057,HDF_DSS_F058,HDF_DSS_F059,HDF_DSS_F060,HDF_DSS_F061,HDF_DSS_F062,HDF_DSS_F063,HDF_DSS_F064,HDF_DSS_F065,HDF_DSS_F066,HDF_DSS_F067,HDF_DSS_F068,HDF_DSS_F069,HDF_DSS_F070,HDF_DSS_F071,HDF_DSS_F072,HDF_DSS_F073,HDF_DSS_F074,HDF_MDC_D006,HDF_MDC_F006,HDF_OST_D003,HDF_AMD_F005"/>
+
+	<import file="common_target.xml" as="common_target"/>
+	<target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>
+

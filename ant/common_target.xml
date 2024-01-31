@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="common_target" xmlns:artifact="antlib:org.apache.maven.artifact.ant">
+
+  <!-- maven-ant-task -->
+  <path id="maven-ant-tasks.classpath" path="./maven-ant-tasks-2.1.3.jar"/>
+  <typedef resource="org/apache/maven/artifact/ant/antlib.xml"
+    uri="antlib:org.apache.maven.artifact.ant"
+    classpathref="maven-ant-tasks.classpath"/>
+
+
+  <!-- Task definition -->
+  <taskdef resource="net/sf/antcontrib/antlib.xml">
+    <classpath>
+      <pathelement location="common/ant-contrib-1.0b3.jar"/>
+    </classpath>
+  </taskdef>
+
+
+  <property file="common/build.properties"/>
+  <!--
+  <property name="maven-home.path" value="${env.MAVEN_HOME}" />
+  -->
+
+
+  <target id="common_create_run_jar" name="common_create_run_jar">
+
+
+    <echo message="${mvn_build_skip}"/>
+
+    <if>
+      <equals arg1="${mvn_build_skip}" arg2="true"/>
+
+      <then>
+
+      </then>
+      <else>
+        <property environment="env"/>
+        <echo message="${env.MAVEN_HOME}"/>
+
+        <artifact:mvn pom="../pom.xml" mavenHome="${env.MAVEN_HOME}" fork="true" failonerror="true">
+          <jvmarg value="-Dmaven.multiModuleProjectDirectory"/>
+          <arg value="clean"/>
+          <arg value="install"/>
+          <!--<arg value="-X"/>-->
+        </artifact:mvn>
+      </else>
+
+
+    </if>
+
+
+    <!--
+    <buildnumber file="build.num"/>
+    <echo message="build-version: ${build.number}"/>
+    -->
+
+    <for list="${products}" param="productCode">
+
+      <sequential>
+
+        <!-- KBF_MDC_F004 상품 jar 빌드 -->
+        <!-- KBF_AMD_F004 상품 jar 빌드 -->
+        <if>
+          <or>
+            <equals arg1="@{productCode}" arg2="KBF_MDC_F004"/>
+            <equals arg1="@{productCode}" arg2="KBF_AMD_F004"/>
+            <equals arg1="@{productCode}" arg2="KBF_AMD_F006"/>
+          </or>
+          <then>
+
+            <path id="dependencies.path">
+              <fileset dir="lib" defaultexcludes="no">
+                <include name="**/*.jar"/>
+              </fileset>
+            </path>
+
+            <pathconvert property="manifest.classpath" pathsep=" ">
+              <path refid="dependencies.path"/>
+              <mapper>
+                <chainedmapper>
+                  <flattenmapper/>
+                  <globmapper from="*.jar" to="lib/*.jar"/>
+                </chainedmapper>
+              </mapper>
+            </pathconvert>
+
+            <tstamp>
+              <format property="BUILT_DATE" pattern="yyyy-MM-dd HH:mm:ss"/>
+            </tstamp>
+
+            <echo message="build-date: ${BUILT_DATE}"/>
+
+            <echo message="true"/>
+            <jar destfile="${dir.jarfile}/jar/@{productCode}.jar">
+
+              <manifest>
+                <attribute name="Main-Class"
+                  value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="${package}.@{productCode}"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Implementation-Version" value="${version.num}-b${build.number}"/>
+                <attribute name="Rsrc-Class-Path" value="./ ${manifest.classpath}"/>
+                <attribute name="Built-Date" value="${BUILT_DATE}"/>
+              </manifest>
+
+              <zipfileset src="common/jar-in-jar-loader.zip"/>
+              <fileset dir="../target/classes"/>
+              <zipfileset dir="lib" includes="*.jar*" prefix="lib"/>
+
+            </jar>
+
+          </then>
+
+          <!-- 공통 상품 jar 빌드 -->
+          <else>
+
+            <path id="dependencies.path">
+              <fileset dir="lib" defaultexcludes="no">
+                <include name="**/*.jar"/>
+
+              </fileset>
+            </path>
+
+            <pathconvert property="manifest.classpath" pathsep=" ">
+              <path refid="dependencies.path"/>
+              <mapper>
+                <chainedmapper>
+                  <flattenmapper/>
+                  <globmapper from="*.jar" to="lib/*.jar"/>
+                </chainedmapper>
+              </mapper>
+            </pathconvert>
+
+            <tstamp>
+              <format property="BUILT_DATE" pattern="yyyy-MM-dd HH:mm:ss"/>
+            </tstamp>
+
+            <echo message="build-date: ${BUILT_DATE}"/>
+
+            <echo message="false"/>
+            <jar destfile="${dir.jarfile}/jar/@{productCode}.jar">
+
+              <manifest>
+                <attribute name="Main-Class"
+                  value="org.eclipse.jdt.internal.jarinjarloader.JarRsrcLoader"/>
+                <attribute name="Rsrc-Main-Class" value="${package}.@{productCode}"/>
+                <attribute name="Class-Path" value="."/>
+                <attribute name="Implementation-Version" value="${version.num}-b${build.number}"/>
+                <attribute name="Rsrc-Class-Path" value="./ ${manifest.classpath}"/>
+                <attribute name="Built-Date" value="${BUILT_DATE}"/>
+              </manifest>
+
+              <zipfileset src="common/jar-in-jar-loader.zip"/>
+
+              <fileset dir="../target/classes"/>
+
+              <zipfileset dir="lib" includes="*.jar*" prefix="lib">
+                <exclude name="tess4j*.jar"/>
+                <exclude name="lept4j*.jar"/>
+                <exclude name="jai-imageio-core*.jar"/>
+              </zipfileset>
+
+            </jar>
+          </else>
+        </if>
+
+
+        <echo message="@{productCode}: build complete!"/>
+
+      </sequential>
+    </for>
+  </target>
+</project>

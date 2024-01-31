@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="TYL_BUILD">
+	<!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+	<!--ANT 1.7 is required-->
+
+	<!--define folder properties-->
+	<property name="version.num" value="1.00"/>
+	<property name="package" value="com.welgram.crawler.direct.life.tyl"/>
+	<property name="products" value="TYL_CCR_D001,TYL_CCR_D003,TYL_CCR_D004,TYL_CHL_D001,TYL_TRM_D002,TYL_SAV_D001,TYL_TRM_F001,TYL_TRM_F002,TYL_TRM_F003,TYL_TRM_F004,TYL_TRM_F005,TYL_TRM_F006,TYL_WLF_F001,TYL_WLF_F002,TYL_WLF_F003,TYL_WLF_F004,TYL_WLF_F005,TYL_WLF_F006,TYL_WLF_F007,TYL_DTL_F001,TYL_DTL_F002,TYL_DTL_F003,TYL_DMN_F001,TYL_DMN_F002,TYL_DMN_F003,TYL_DTL_F004,TYL_DMN_F004,TYL_CCR_F007,TYL_ASV_F001,TYL_TRM_F008,TYL_TRM_F008,TYL_TRM_F010,TYL_MDC_F002,TYL_TRM_F013,TYL_ANT_F002,TYL_CCR_F003,TYL_TRM_F011,TYL_TRM_F009,TYL_WLF_F010,TYL_WLF_F011,TYL_TRM_F012,TYL_SAV_F002,TYL_WLF_F008,TYL_WLF_F019,TYL_WLF_F018,TYL_WLF_F017,TYL_WLF_F016,TYL_WLF_F015,TYL_WLF_F014,TYL_TRM_F019,TYL_TRM_F018,TYL_TRM_F017,TYL_TRM_F016,TYL_TRM_F015,TYL_TRM_F014,TYL_DSS_F005,TYL_DSS_F008,TYL_DSS_F011,TYL_DSS_F002,TYL_DSS_F004,TYL_DSS_F012,TYL_DSS_F013,TYL_DSS_F014,TYL_DSS_F015,TYL_DSS_F016,TYL_DSS_F017,TYL_DSS_F018,TYL_DSS_F019,TYL_DSS_F020,TYL_DSS_F021,TYL_DSS_F022,TYL_DSS_F023"/>
+
+	<!--
+	<property name="products"
+    value="TYL00127,TYL00128,TYL00129,TYL00132,TYL00133,TYL00135"/>
+-->
+
+	<!-- 동양생명(TYL) -->
+	<import file="common_target.xml" as="common_target"/>
+	<target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+
+</project>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar"
+         name="KDB_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+
+    <!--define folder properties-->
+    <property name="version.num" value="1.00"/>
+    <property name="package" value="com.welgram.crawler.direct.life.kdb"/>
+    <property name="products"
+              value="KDB_ASV_D003,KDB_CCR_D003,KDB_DSS_D005,KDB_DMN_D003,KDB_CCR_D004,KDB_DSS_D007"/>
+<!-- 판매 종료된 상품
+    KDB_ACD_D001,KDB_BAB_D001,KDB_CHL_D001,KDB_DSS_D001,KDB_DSS_D002,KDB_DSS_D003,KDB_TRM_D001,KDB_SAV_D001,
+-->
+
+    <import file="common_target.xml" as="common_target"/>
+    <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="HKL_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.life.hkl"/>
+  <property name="products" value="HKL_ACD_F001,HKL_ANT_F001,HKL_ANT_F002,HKL_ASV_D001,HKL_ASV_F001,HKL_CCR_F002,HKL_CCR_F003,HKL_CCR_F006,HKL_CCR_F008,HKL_CHL_D001,HKL_CHL_D002,HKL_CHL_F005,HKL_CHL_F006,HKL_CHL_F007,HKL_CHL_F008,HKL_CHL_F009,HKL_CHL_F010,HKL_CHL_F011,HKL_CHL_F012,HKL_DMN_F004,HKL_DMN_F005,HKL_DMN_F006,HKL_DSS_F011,HKL_DSS_F027,HKL_DSS_F028,HKL_DSS_F035,HKL_DSS_F036,HKL_DSS_F037,HKL_DSS_F038,HKL_DSS_F039,HKL_DSS_F040,HKL_DSS_F041,HKL_DSS_F042,HKL_DSS_F043,HKL_DSS_F044,HKL_MDC_F002,HKL_SAV_F001,HKL_TRM_D001,HKL_WLF_F012,HKL_WLF_F014"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

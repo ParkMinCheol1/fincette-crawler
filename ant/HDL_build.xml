@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="HDL_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+    <!--define folder properties-->
+
+	<!--define folder properties-->
+	<property name="version.num" value="1.00"/>
+	<property name="package" value="com.welgram.crawler.direct.life.hdl"/>
+	<property name="products" value="HDL_WLF_F024,HDL_WLF_F026"/>
+
+	<!--	<property name="products" value="HDL_WLF_F024,HDL_WLF_F026,HDL_DSS_F003,HDL_ANT_F001,HDL_ANT_F002,HDL_CCR_F002,HDL_CCR_F003,HDL_CCR_F004,HDL_CCR_F005,HDL_CCR_F006,HDL_DSS_F003,HDL_DSS_F004,HDL_DSS_F005,HDL_DSS_F006,HDL_DSS_F008,HDL_TRM_F005,HDL_TRM_F006,HDL_TRM_F007,HDL_TRM_F008,HDL_TRM_F009,HDL_WLF_F003,HDL_WLF_F011,HDL_WLF_F012,HDL_WLF_F013,HDL_WLF_F014,HDL_WLF_F016,HDL_WLF_F017,HDL_WLF_F018"/>-->
+
+	<import file="common_target.xml" as="common_target"/>
+	<target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

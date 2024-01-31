@@ -1,0 +1,854 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+ [Layout]
+ %m : 로그내용이 출력
+ %p : trace > debug > info > warn > error 등의 priority 출력
+ %r : 어플리케이션이 시작되어 로깅이벤트가 발생하는 시점까지의 경과시간을 밀리세컨드로 출력
+ %c : 예) 카테고리가 a.b.c 처럼 되어있다면 %c{2}는 b.c가 출력됩니다.
+ %n :  플랫폼 종속적인 개행문자가 출력된다. \r\n 또는 \n 일것이다
+ %d : 로깅이벤트가 일어나 날짜 출력 ( 프로그램의 실행속도를 느리게 한다.)
+     예) %d{HH:mm:ss} 또는 %d{dd MMMM yyyy HH:mm:ss}
+ %C : 호출자의 클래스명 출력
+    예) 클래스구조가 org.apache.xyz.SomeClass 처럼 되어있다면 %C{2}는 xyz.SomeClass 가 출력됩니다
+ %M : 로깅이 발생한 method 이름을 나타냅니다.
+ %F : 로깅이 발생한 프로그램 파일명을 나타냅니다.
+ %l : 로깅이 발생한 caller의 정보를 나타냅니다 
+ %L : 로깅이 발생한 caller의 라인수를 나타냅니다 
+ %x : 로깅이 발생한 thread와 관련된 NDC(nested diagnostic context)를 출력합니다. 
+ %X : 로깅이 발생한 thread와 관련된 MDC(mapped diagnostic context)를 출력합니다. 
+ %% : % 표시를 출력하기 위해 사용한다.  
+ %t : 로그이벤트가 발생된 쓰레드의 이름을 출력합니다
+-->
+
+<configuration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/nkatsar/logback-XSD/master/src/main/xsd/logback.xsd">
+
+  <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+<!--      <pattern>%d{MMdd HH:mm:ss} | %m%n</pattern>-->
+    </encoder>
+  </appender>
+
+  <appender name="file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  IBK연금보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="ibk_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/ibk_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/ibk_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  교보라이프플래닛  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="klp_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/klp_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/klp_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  삼성화재  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="sfi_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/sfi_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/sfi_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  MG손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="mgf_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/mgf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/mgf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  하나생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hnl_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/hnl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hnl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  DB손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="dbf_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/dbf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/dbf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  DB생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="dbl_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/dbl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/dbl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  에이스손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="acf_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/acf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/acf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  삼성생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="sli_file" class="ch.qos.logback.core.FileAppender" >
+    <file>./logs/sli_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/sli_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  AIG 손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="aig_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/aig_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/aig_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  DGB 생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="dgl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/dgl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/dgl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  한화손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hwf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/hwf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hwf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  미래에셋생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="mra_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/mra_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/mra_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  우체국 보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="pst_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/pst_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/pst_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  동양생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="tyl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/tyl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/tyl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  KB 손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="kbf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/kbf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/kbf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  KB생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="kbl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/kbl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/kbl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  농협손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="nhf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/nhf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/nhf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  농협생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="nhl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/nhl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/nhl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  KDB 생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="kdb_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/kdb_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/kdb_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  신한생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="shl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/shl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/shl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  하나손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hnf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/hnf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hnf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  한화생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hwl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/hwl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hwl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  라이나생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="lin_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/lin_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/lin_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  ABL생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="abl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/abl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/abl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  흥국생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hkl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/hkl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hkl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  롯데손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="ltf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/ltf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/ltf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  현대해상  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="hdf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/hdf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/hdf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  AIA생명  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="ail_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/ail_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/ail_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  캐롯손해보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <appender name="crf_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/crf_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/crf_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+          class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <appender name="bpl_file" class="ch.qos.logback.core.FileAppender">
+    <file>./logs/bpl_crawler.log</file>
+    <encoder>
+      <charset>UTF-8</charset>
+      <pattern>%d{yyyy-MM-dd HH:mm:ss} [%-5level] %C{8}.%M:%L - %m%n</pattern>
+    </encoder>
+
+    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+      <fileNamePattern>./logs/bpl_crawler.%d{yyyy-MM-dd}.%i.log.gz</fileNamePattern>
+      <timeBasedFileNamingAndTriggeringPolicy
+        class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+        <!-- or whenever the file size reaches 100MB -->
+        <maxFileSize>50MB</maxFileSize>
+        <!-- kb, mb, gb -->
+      </timeBasedFileNamingAndTriggeringPolicy>
+      <maxHistory>7</maxHistory>
+    </rollingPolicy>
+  </appender>
+
+  <logger name="com.welgram" level="DEBUG"/>
+  <logger name="com.*" level="INFO"/>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  화재보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <logger name="com.welgram.crawler.direct.fire.acf" level="DEBUG">
+    <appender-ref ref="acf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.dbf" level="DEBUG">
+    <appender-ref ref="dbf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.mgf" level="DEBUG">
+    <appender-ref ref="mgf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.sfi" level="DEBUG">
+    <appender-ref ref="sfi_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.ltf" level="DEBUG">
+    <appender-ref ref="ltf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.hdf" level="DEBUG">
+    <appender-ref ref="hdf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.aig" level="DEBUG">
+    <appender-ref ref="aig_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.hwf" level="DEBUG">
+    <appender-ref ref="hwf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.kbf" level="DEBUG">
+    <appender-ref ref="kbf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.nhf" level="DEBUG">
+    <appender-ref ref="nhf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.hnf" level="DEBUG">
+    <appender-ref ref="hnf_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.fire.crf" level="DEBUG">
+    <appender-ref ref="crf_file" />
+  </logger>
+
+  <!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::  생명보험  ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <logger name="com.welgram.crawler.direct.life.ibk" level="DEBUG">
+    <appender-ref ref="ibk_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.klp" level="DEBUG">
+    <appender-ref ref="klp_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.hnl" level="DEBUG">
+    <appender-ref ref="hnl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.sli" level="DEBUG">
+    <appender-ref ref="sli_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.hwl" level="DEBUG">
+    <appender-ref ref="hwl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.lin" level="DEBUG">
+    <appender-ref ref="lin_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.abl" level="DEBUG">
+    <appender-ref ref="abl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.dgl" level="DEBUG">
+    <appender-ref ref="dgl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.mra" level="DEBUG">
+    <appender-ref ref="mra_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.pst" level="DEBUG">
+    <appender-ref ref="pst_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.tyl" level="DEBUG">
+    <appender-ref ref="tyl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.kbl" level="DEBUG">
+    <appender-ref ref="kbl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.nhl" level="DEBUG">
+    <appender-ref ref="nhl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.kdb" level="DEBUG">
+    <appender-ref ref="kdb_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.shl" level="DEBUG">
+    <appender-ref ref="shl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.hkl" level="DEBUG">
+    <appender-ref ref="hkl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.ail" level="DEBUG">
+    <appender-ref ref="ail_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.bpl" level="DEBUG">
+    <appender-ref ref="bpl_file" />
+  </logger>
+
+  <logger name="com.welgram.crawler.direct.life.dbl" level="DEBUG">
+    <appender-ref ref="dbl_file" />
+  </logger>
+
+<!--
+<logger name="com.welgram.crawler.FinLogger" level="INFO">
+<level value="info" />
+</logger>
+-->
+
+  <!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+  <root level="ERROR">
+    <appender-ref ref="console"/>
+    <appender-ref ref="file"/>
+  </root>
+
+</configuration>

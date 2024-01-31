@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="HNF_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="package" value="com.welgram.crawler.direct.fire.hnf"/>
+  <property name="products" value="HNF_CCR_D006,HNF_CCR_F010,HNF_CCR_F012,HNF_CCR_F013,HNF_CCR_F014,HNF_CCR_F015,HNF_CHL_D001,HNF_DMT_D001,HNF_DRV_D002,HNF_DRV_D006,HNF_DSS_D001,HNF_DSS_F004,HNF_DSS_F005,HNF_DSS_F006,HNF_DSS_F007,HNF_DSS_F008,HNF_DSS_F009,HNF_DSS_F010,HNF_DSS_F011,HNF_DSS_F012,HNF_DSS_F013,HNF_DSS_F014,HNF_DSS_F015,HNF_DSS_F016,HNF_DSS_F017,HNF_DSS_F018,HNF_DTL_D005,HNF_DTL_F005,HNF_OST_D001,HNF_CHL_F001,HNF_DRV_D007,HNF_CCR_F021,HNF_CCR_F022,HNF_CCR_F023,HNF_CCR_F024,HNF_CCR_F025,HNF_CHL_F005,HNF_CHL_F006,HNF_DSS_F036,HNF_DSS_F037,HNF_DSS_F038,HNF_DSS_F039,HNF_DSS_F040,HNF_DSS_F041,HNF_DSS_F044,HNF_DSS_F045,HNF_DSS_F046,HNF_DSS_F047,HNF_DTL_F007"/>
+  <!--
+  <property name="products" value="HWF00230,HWF00283,HWF00286"/>
+  -->
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

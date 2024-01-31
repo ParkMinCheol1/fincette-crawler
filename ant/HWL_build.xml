@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar"  name="HWL_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.life.hwl"/>
+  <!--
+  <property name="products" value="HWL00035,HWL00036,HWL00037,HWL00038,HWL00107,HWL00120"/>
+  -->
+  <property name="products" value="HWL_CCR_D005,HWL_CCR_D006,HWL_CCR_D007,HWL_CCR_D008,HWL_CCR_D009,HWL_CCR_D010,HWL_TRM_D001,HWL_ASV_D001,HWL_ANT_D002,HWL_SAV_D001,HWL_MDC_D003,HWL_SAV_D002,HWL_CCR_D011,HWL_CCR_D009,HWL_CCR_D012"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+
+</project>

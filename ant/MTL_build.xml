@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="MTL_BUILD">
+	<!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+	<!--ANT 1.7 is required-->
+	<!--define folder properties-->
+
+	<property name="package" value="com.welgram.crawler.direct.life.mtl"/>
+<!--	<property name="products" value="MTL_ACD_D001,MTL_ACD_D002,MTL_ANT_F004,MTL_CCR_D001,MTL_CCR_D002,MTL_CCR_D003,MTL_CCR_D004,MTL_CCR_F001,MTL_CCR_F002,MTL_CHL_D001,MTL_DSS_D001,MTL_DSS_F004,MTL_DSS_F005,MTL_TRM_F001,MTL_TRM_F002,MTL_TRM_F006,MTL_TRM_F007,MTL_TRM_F016,MTL_WLF_F020,MTL_WLF_F021,MTL_WLF_F022,MTL_BAB_F001,MTL_TRM_F013,MTL_WLF_F020,MTL_BAB_F002,MTL_WLF_F020,MTL_BAB_F001,MTL_CHL_F001,MTL_DSS_F004,MTL_DSS_F005,MTL_TRM_F001,MTL_TRM_F002,MTL_TRM_F006,MTL_TRM_F007,MTL_TRM_F013,MTL_TRM_F016,MTL_WLF_F018,MTL_WLF_F020,MTL_WLF_F021,MTL_WLF_F022"/>-->
+	<property name="products" value="MTL_WLF_F018,MTL_WLF_F020,MTL_WLF_F021,MTL_WLF_F022"/>
+
+	<property name="version.num" value="1.00"/>
+
+
+
+	<import file="common_target.xml" as="common_target"/>
+	<target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

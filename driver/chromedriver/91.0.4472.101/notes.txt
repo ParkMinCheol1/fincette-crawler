@@ -1,0 +1,3 @@
+---------ChromeDriver 91.0.4472.101 (2021-06-11)---------
+Supports Chrome version 91
+Resolved issue 1205107: Unable to get attribute value for fields on the web application [Pri-2]

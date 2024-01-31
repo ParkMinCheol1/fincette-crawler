@@ -1,0 +1,55 @@
+# This workflow will build a Java project with Ant
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-java-with-ant
+
+name: 크롤링jar CI
+
+on:
+#   push:
+#     branches: [ "master" ]
+#   pull_request:
+#     branches: [ "master" ]
+    
+  workflow_dispatch:
+    inputs:
+      company_code:
+        description: '보험회사코드'
+        default: 'SLI'
+        required: true
+        type: string
+    
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:      
+    - uses: szenius/set-timezone@v1.2
+      with:
+        timezoneLinux: "Asia/Seoul"
+  
+    - uses: actions/checkout@v3
+    
+    - name: Set up JDK 8
+      uses: actions/setup-java@v3
+      with:
+        java-version: '8'
+        distribution: 'temurin'
+
+    - name: Set up Maven
+      uses: stCarolas/setup-maven@v4
+      with:
+        maven-version: 3.6.3
+    
+    - name: Set environment variables
+      uses: allenevans/set-env@v2.0.1
+      with:
+        M2_HOME: /opt/hostedtoolcache/maven/3.6.3/x64
+        MAVEN_HOME: /opt/hostedtoolcache/maven/3.6.3/x64
+        maven_test_skip: true
+        
+    - name: Build with Ant
+      run: ant -buildfile ant/${{ inputs.company_code }}_build.xml create_run_jar
+      
+    - name: Run build script(jar upload)
+      run: chmod +x .github/workflows/jars_upload.sh && .github/workflows/jars_upload.sh
+      shell: bash

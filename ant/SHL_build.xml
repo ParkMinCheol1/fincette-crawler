@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="SHL_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.life.shl"/>
+<!--  <property name="products" value="SHL_ACD_D002,SHL_ACD_D003,SHL_ACD_D004,SHL_ACD_D005,SHL_ASV_D002,SHL_CCR_D005,SHL_CCR_D006,SHL_CCR_D007,SHL_CCR_D008,SHL_CCR_D009,SHL_CHL_D002,SHL_DSS_D002,SHL_DSS_D003,SHL_DSS_D004,SHL_TRM_D003,SHL_TRM_D004,SHL_TRM_F001,SHL_TRM_F002,SHL_TRM_F003,SHL_TRM_F004,SHL_TRM_F005,SHL_TRM_F006,SHL_CHL_D003,SHL_DSS_D005,SHL_WLF_F001,SHL_WLF_F002,SHL_WLF_F003,SHL_WLF_F004,SHL_WLF_F005,SHL_WLF_F006,SHL_WLF_F007,SHL_WLF_F008,SHL_WLF_F013,SHL_WLF_F014,SHL_WLF_F015,SHL_WLF_F016,SHL_WLF_F017,SHL_WLF_F026,SHL_WLF_F027,SHL_DTL_F001,SHL_DMN_F003,SHL_DMN_F004,SHL_ACD_D007,SHL_CCR_F004,SHL_CCR_D010,SHL_DSS_D006,SHL_CCR_D011,SHL_WLF_A002,SHL_WLF_F038,SHL_WLF_F028,SHL_DSS_D007,SHL_CCR_F009,SHL_CCR_F003,SHL_DMN_F005,SHL_DMN_F006,SHL_WLF_F039,SHL_WLF_F030,SHL_WLF_F036,SHL_WLF_F037,SHL_WLF_F009,SHL_WLF_F029,SHL_CCR_F002"/>-->
+  <property name="products" value="SHL_DSS_F005"/>
+
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+
+</project>

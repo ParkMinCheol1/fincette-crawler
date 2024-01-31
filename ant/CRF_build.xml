@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="CRF_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.fire.crf"/>
+<!--  <property name="products" value="CRF_OST_D001,CRF_OST_D002,CRF_DSS_D002,CRF_CHL_D004,CRF_DRV_D002"/>-->
+  <property name="products" value="CRF_DRV_D002"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

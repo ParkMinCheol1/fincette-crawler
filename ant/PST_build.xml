@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="PST_BUILD">
+    <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+    <!--ANT 1.7 is required-->
+
+    <!--define folder properties-->
+    <property name="version.num" value="1.00"/>
+    <property name="package" value="com.welgram.crawler.direct.life.pst"/>
+    <property name="products" value="PST_ACD_F002,PST_ACD_F004,PST_ACD_F009,PST_AMD_F001,PST_CCR_F003,PST_CCR_F004,PST_CCR_F005,PST_CHL_F001,PST_CHL_F002,PST_CHL_F003,PST_DMN_F001,PST_DMN_F002,PST_DMN_F003,PST_DMN_F004,PST_DSS_F001,PST_DSS_F002,PST_DSS_F003,PST_DSS_F004,PST_DSS_F007,PST_DSS_F008,PST_DSS_F010,PST_DSS_F011,PST_DSS_F012,PST_DSS_F013,PST_DSS_F014,PST_DSS_F015,PST_DSS_F016,PST_DSS_F017,PST_DSS_F018,PST_DSS_F021,PST_DSS_F022,PST_DSS_F026,PST_DSS_F027,PST_DTL_F001"/>
+
+    <import file="common_target.xml" as="common_target"/>
+    <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+</project>

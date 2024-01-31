@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project default="create_run_jar" name="HMF_BUILD">
+  <!--this file was created by Eclipse Runnable JAR file Export Wizard-->
+  <!--ANT 1.7 is required-->
+
+  <!--define folder properties-->
+  <property name="version.num" value="1.00"/>
+  <property name="package" value="com.welgram.crawler.direct.fire.hmf"/>
+<!--  <property name="products" value="HMF_DSS_F150,HMF_DSS_F152,HMF_DSS_F153,HMF_DSS_F154,HMF_DSS_F155,HMF_DSS_F156,HMF_DSS_F157,HMF_DSS_F151,HMF_DSS_F146,HMF_DSS_F147,HMF_DSS_F148,HMF_DSS_F149,HMF_DSS_F140,HMF_DSS_F141,HMF_DSS_F142,HMF_DSS_F143,HMF_DSS_F144,HMF_DSS_F145,HMF_DSS_F146,HMF_DSS_F133,HMF_DSS_F134,HMF_DSS_F135,HMF_DSS_F136,HMF_DSS_F137,HMF_DSS_F138,HMF_DSS_F139,HMF_DTL_F012,HMF_AMD_F005,HMF_MDC_F007,HMF_CCR_F043,HMF_CCR_F044,HMF_CCR_F045,HMF_CCR_F046,HMF_CHL_F008,HMF_CHL_F009,HMF_CCR_F038,HMF_CCR_F039,HMF_CCR_F040,HMF_CCR_F041,HMF_CCR_F042,HMF_DSS_F130,HMF_DMN_F013,HMF_DMN_F014,HMF_DMN_F015,HMF_DMN_F016,HMF_MDC_D009,HMF_MDC_D008,HMF_MDC_F005,HMF_ACD_F003,HMF_DMN_F009,HMF_DSS_F104,HMF_DSS_F105,HMF_DSS_F106,HMF_DSS_F107,HMF_DSS_F108,HMF_DSS_F109,HMF_DSS_F110,HMF_DSS_F111,HMF_DSS_F112,HMF_DSS_F113,HMF_DSS_F117,HMF_DSS_F118,HMF_DSS_F119,HMF_DSS_F120,HMF_DSS_F122,HMF_DSS_F123,HMF_DSS_F124,HMF_DSS_F125,HMF_DSS_F126,HMF_DSS_F127,HMF_DSS_F128,HMF_DSS_F129,HMF_DSS_F114,HMF_DSS_F115,HMF_DSS_F116,HMF_DSS_F121,HMF_DSS_F111"/>-->
+  <property name="products" value="HMF_CHL_F008"/>
+
+  <import file="common_target.xml" as="common_target"/>
+  <target name="create_run_jar" depends="common_target.common_create_run_jar"/>
+
+</project>
